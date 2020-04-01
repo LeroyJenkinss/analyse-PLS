@@ -19,3 +19,14 @@
 #
 # Python heeft een paar goede tools hiervoor in de module JSON, zit waarschijnlijk ook een functie die json bestandjes gelijk inlaad. 
 # Not sure tho, mogen jullie zelf uitvogelen, ma dudes
+import json
+
+with open('../Data/AllBooks.json','r') as json_file:
+   data = json_file.read()
+   dict_books = json.loads(data)
+
+   print(dict_books[1])
+
+
+
+
