@@ -20,13 +20,34 @@
 # Python heeft een paar goede tools hiervoor in de module JSON, zit waarschijnlijk ook een functie die json bestandjes gelijk inlaad. 
 # Not sure tho, mogen jullie zelf uitvogelen, ma dudes
 import json
-
-with open('../Data/AllBooks.json','r') as json_file:
-   data = json_file.read()
-   dict_books = json.loads(data)
-
-   print(dict_books[1])
+class book:
 
 
+   with open('../Data/AllBooks.json','r') as json_file:
+      data = json_file.read()
+      dict_books = json.loads(data)
+
+      def write2BookJson(self,dict2json):
+         with open('../Data/AllBooks.json') as targetJson:
+            feeds = json.load(targetJson)
+
+            feeds.append(dict2json)
+            with open('../Data/AllBooks.json', mode='w') as f:
+               f.write(json.dumps(feeds, indent=2))
+
+
+
+
+
+sample = {
+           "id_book": 3,
+           "bookItems": 3,
+           "title": "De drie en een half biggetjes",
+           "author" : "Sir Henk",
+           "genre" : "Science-Fictins"
+       }
+
+boo = book()
+boo.write2BookJson(sample)
 
 

@@ -1,16 +1,23 @@
 [
-    {
-        "id_book": 1,
-        "bookItems": 3,
-        "title": "De drie biggetjes",
-        "author" : "Henk",
-        "genre" : "Science-Fictions"
-    },
-    {
-        "id_book": 2,
-        "bookItems": 3,
-        "title": "Jonkel Papa",
-        "author" : "JePadre",
-        "genre" : "Literatuur"
-    }
+  {
+    "id_book": 1,
+    "bookItems": 3,
+    "title": "De drie biggetjes",
+    "author": "Henk",
+    "genre": "Science-Fictions"
+  },
+  {
+    "id_book": 2,
+    "bookItems": 3,
+    "title": "Jonkel Papa",
+    "author": "JePadre",
+    "genre": "Literatuur"
+  },
+  {
+    "id_book": 3,
+    "bookItems": 3,
+    "title": "De drie en een half biggetjes",
+    "author": "Sir Henk",
+    "genre": "Science-Fictins"
+  }
 ]
