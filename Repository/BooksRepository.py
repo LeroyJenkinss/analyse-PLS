@@ -21,19 +21,29 @@
 # Not sure tho, mogen jullie zelf uitvogelen, ma dudes
 import json
 class book:
+    def __init__(self):
+        with open('../Data/AllSubscribers.json', 'r') as targetJsonSub:
+            allSubscribers = targetJsonSub.read()
+            self.dict_allsub = json.loads(allSubscribers)
 
 
-   with open('../Data/AllBooks.json','r') as json_file:
-      data = json_file.read()
-      dict_books = json.loads(data)
+        with open('../Data/AllLoanedBooks.json', 'r') as targetJsonLBooks:
+             allLoanedBooks = targetJsonLBooks.read()
+             self.dict_allLoanedBooks = json.loads(allLoanedBooks)
 
-      def add2BookJson(self,dict2json):
-         with open('../Data/AllBooks.json') as targetJson:
-            oldJson = json.load(targetJson)
+        with open('../Data/AllBooks.json', 'r') as bookJsonContent:
+            allbooks = bookJsonContent.read()
+            self.dict_books = json.loads(allbooks)
 
-            oldJson.append(dict2json)
-            with open('../Data/AllBooks.json', mode='w') as newDict2Json:
-               newDict2Json.write(json.dumps(oldJson, indent=2))
+    def add2BookJson(self,dict2json):
+     with open('../Data/AllBooks.json') as targetJson:
+        oldJson = json.load(targetJson)
+
+        oldJson.append(dict2json)
+        with open('../Data/AllBooks.json', mode='w') as newDict2Json:
+           newDict2Json.write(json.dumps(oldJson, indent=2))
+
+
 
 
 
@@ -47,7 +57,5 @@ sample = {
            "genre" : "Science-Fictins"
        }
 
-boo = book()
-boo.add2BookJson(sample)
-
+print((book().dict_books[1]))
 
