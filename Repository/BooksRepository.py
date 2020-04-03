@@ -27,13 +27,13 @@ class book:
       data = json_file.read()
       dict_books = json.loads(data)
 
-      def write2BookJson(self,dict2json):
+      def add2BookJson(self,dict2json):
          with open('../Data/AllBooks.json') as targetJson:
-            feeds = json.load(targetJson)
+            oldJson = json.load(targetJson)
 
-            feeds.append(dict2json)
-            with open('../Data/AllBooks.json', mode='w') as f:
-               f.write(json.dumps(feeds, indent=2))
+            oldJson.append(dict2json)
+            with open('../Data/AllBooks.json', mode='w') as newDict2Json:
+               newDict2Json.write(json.dumps(oldJson, indent=2))
 
 
 
@@ -48,6 +48,6 @@ sample = {
        }
 
 boo = book()
-boo.write2BookJson(sample)
+boo.add2BookJson(sample)
 
 
