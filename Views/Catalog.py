@@ -8,14 +8,18 @@ class Catalog:
         self.AllBooksList = []
         allBooks = BooksRepository.readJson()
         for singleBook in allBooks:
-            self.AllBooksList.append(Book(singleBook)) 
+            self.AllBooksList.append(Book(singleBook))
 
-    def ViewCatalog(self):
-        self.__init__()
+    def ViewCatalog(self, searchTerm = ""):
+        if searchTerm != "":
+            AllBooksView = list(filter(lambda x: searchTerm in x.Id+x.Title+x.Author+x.Genre, self.AllBooksList))
+        else:            
+            AllBooksView = self.AllBooksList
+
         bookRowView = ""
         whiteSpaceToAddTitle, whiteSpaceToAddAuthor, whiteSpaceToAddGenre = 0, 0, 0
 
-        for book in self.AllBooksList:
+        for book in AllBooksView:
             if len(book.Title) > whiteSpaceToAddTitle:
                 whiteSpaceToAddTitle = len(book.Title)
             if len(book.Author) > whiteSpaceToAddAuthor:
@@ -23,7 +27,7 @@ class Catalog:
             if len(book.Genre) > whiteSpaceToAddGenre:
                 whiteSpaceToAddGenre = len(book.Genre)
 
-        for book in self.AllBooksList:
+        for book in AllBooksView:
             if int(book.Id) > 9:
                 whiteSpaceAfterId = " "*6
             else:
@@ -40,11 +44,13 @@ class Catalog:
         
         columnTitleFormatting = "|| BookId: || Title:{}|| Author:{}|| Genre:{}||".format(" "*(whiteSpaceToAddTitle-6),
                                                                                          " "*(whiteSpaceToAddAuthor-7),
-                                                                                         " "*(whiteSpaceToAddGenre-4))
+                                                                                         " "*(whiteSpaceToAddGenre-6))
 
         print("="*len(columnTitleFormatting))
         print(columnTitleFormatting)
         print(bookRowView[:-1])
         print("="*len(columnTitleFormatting))
 
-Catalog().ViewCatalog()
+    def searchBook(self):
+        searchTerm = input("Voer een zoekterm in (op id, auteur, titel of genre): ")
+        Catalog.ViewCatalog(self, searchTerm)
