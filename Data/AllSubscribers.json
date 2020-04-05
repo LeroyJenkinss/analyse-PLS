@@ -1,11 +1,9 @@
 {
     "1" : {
-            "id_subscriber": 1,
         "name": "Gino pietermai",
         "address": "Coronaweg 24"
         },
     "2" : {
-        "id_subscriber": 2,
         "name": "Henkie",
         "address": "Ebolaweg 24"
     }

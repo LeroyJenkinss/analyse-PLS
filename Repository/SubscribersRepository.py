@@ -3,7 +3,7 @@
 
 import json
 
-def openJson():
+def readJson():
     with open('../Data/AllSubscribers.json', 'r') as targetJsonSub:
         allSubscribers = targetJsonSub.read()
         dict_allsub = json.loads(allSubscribers)
@@ -11,17 +11,18 @@ def openJson():
     return dict_allsub
 
 def getPerson(id):
-     jsonAsDict = openJson()
+     jsonAsDict = readJson()
      if isinstance(id, int):
          id = str(id)
      return jsonAsDict[id]
 
-def getHighestId():
-    jsonAsDict = openJson()
+def getNewHighestId():
+    jsonAsDict = readJson()
     listAllIds = jsonAsDict.keys()
-    return max(listAllIds)
+    return str(int(max(listAllIds)) + 1)
 
 def addSubsriber(name, address):
     pass
-    # Voeg nieuwe subscriber toe door de hoogste id op te halen (getHighestId() + 1)
+    # Voeg nieuwe subscriber toe door de hoogste id op te halen getNewHighestId()
     # voeg toe aan json bestandje met naam en adress als parameter
+

@@ -2,12 +2,8 @@
 # Mag je lekker naar de class diagram kijken om welke 2 classes het gaat
 # Succes, Okee doei 
 
-
-
-
 class Person():
     def __init__(self, person_id, name, address):
-        self.id = person_id
-        self.name = name
-        self.address = address
-
+        self.Id = person_id
+        self.Name = name
+        self.Address = address

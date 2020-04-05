@@ -20,42 +20,32 @@
 # Python heeft een paar goede tools hiervoor in de module JSON, zit waarschijnlijk ook een functie die json bestandjes gelijk inlaad. 
 # Not sure tho, mogen jullie zelf uitvogelen, ma dudes
 import json
-class book:
-    def __init__(self):
-        with open('../Data/AllSubscribers.json', 'r') as targetJsonSub:
-            allSubscribers = targetJsonSub.read()
-            self.dict_allsub = json.loads(allSubscribers)
 
+def readJson():
+    with open('../Data/AllBooks.json', 'r') as bookJsonContent:
+        allbooks = bookJsonContent.read()
+        dict_books = json.loads(allbooks)
+    
+    return dict_books
 
-        with open('../Data/AllLoanedBooks.json', 'r') as targetJsonLBooks:
-             allLoanedBooks = targetJsonLBooks.read()
-             self.dict_allLoanedBooks = json.loads(allLoanedBooks)
+def getNewHighestId():
+    jsonAsDict = readJson()
+    listAllIds = jsonAsDict.keys()
+    return str(int(max(listAllIds)) + 1)
 
-        with open('../Data/AllBooks.json', 'r') as bookJsonContent:
-            allbooks = bookJsonContent.read()
-            self.dict_books = json.loads(allbooks)
+def getBook(id):
+    jsonDict = readJson()
+    if isinstance(id, int):
+         id = str(id)
 
-    def add2BookJson(self,dict2json):
-     with open('../Data/AllBooks.json') as targetJson:
+    return jsonDict[id]
+       
+def addBookToJsonAndReturnId(bookToAdd):    
+    newId = getNewHighestId()
+    with open('../Data/AllBooks.json') as targetJson:
         oldJson = json.load(targetJson)
+        oldJson[newId] = bookToAdd
+    with open('../Data/AllBooks.json', mode='w') as newDict2Json:
+        newDict2Json.write(json.dumps(oldJson, indent=2))
 
-        oldJson.append(dict2json)
-        with open('../Data/AllBooks.json', mode='w') as newDict2Json:
-           newDict2Json.write(json.dumps(oldJson, indent=2))
-
-
-
-
-
-
-
-sample = {
-           "id_book": 3,
-           "bookItems": 3,
-           "title": "De drie en een half biggetjes",
-           "author" : "Sir Henk",
-           "genre" : "Science-Fictins"
-       }
-
-print((book().dict_books[1]))
-
+    return newId

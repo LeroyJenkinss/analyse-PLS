@@ -12,3 +12,9 @@ class Subscriber(Person):
         name = person["name"]
         address = person["address"]
         super().__init__(person_id, name, address)
+    
+    @staticmethod
+    def AddSubscriber():
+        # doe hier een call naar de SubscribersRepository.addSubsriber(name, address) wat een subscriber toevoegt en een nieuwe instance van Subscriber maakt. 
+        # Kijk naar AddBook() in BookObject.py als voorbeeld
+        pass
