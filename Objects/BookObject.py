@@ -28,6 +28,6 @@ class Book:
 
     @staticmethod
     def RemoveBook(book_id):
+        BooksRepository.removebook(book_id)
         # Tarik:
         # Hier nog wat code die naar een nieuwe methode in de bookrepository gaat wat het book op basis van de bookId verwijdert uit het Json bestandje. 
-        pass
