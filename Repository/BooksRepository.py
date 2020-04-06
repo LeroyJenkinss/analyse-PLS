@@ -49,3 +49,8 @@ def addBookToJsonAndReturnId(bookToAdd):
         newDict2Json.write(json.dumps(oldJson, indent=2))
 
     return newId
+
+def removeBookToJson(id):
+    # Tarik hier de remove book removen van json
+
+print(Book.AddBook("asdf","aga","agrag","agaerg"))

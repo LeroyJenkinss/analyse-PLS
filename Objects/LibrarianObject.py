@@ -16,9 +16,11 @@ class Librarian(Person):
         self.Password = "password"
 
     def MakeBackup(self):
+        # Davinci
         # hier nog even een methode maken wat een backup maakt van de bestanden 
         pass
 
     def RecoverBackup(self):
+        # Davinci
         # hier nog even een methode maken wat een backup pakt en de json bestanden overschrijft 
         pass

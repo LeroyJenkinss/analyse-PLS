@@ -15,6 +15,7 @@ class Subscriber(Person):
     
     @staticmethod
     def AddSubscriber():
+        # Kay:
         # doe hier een call naar de SubscribersRepository.addSubsriber(name, address) wat een subscriber toevoegt en een nieuwe instance van Subscriber maakt. 
         # Kijk naar AddBook() in BookObject.py als voorbeeld
         pass
