@@ -50,7 +50,13 @@ def addBookToJsonAndReturnId(bookToAdd):
 
     return newId
 
-def removeBookToJson(id):
-    # Tarik hier de remove book removen van json
+def removebook(book_id):
 
-print(Book.AddBook("asdf","aga","agrag","agaerg"))
+    jsonDict = readJson()
+    print( jsonDict)
+    print("hier komt 2")
+    del jsonDict[book_id]
+    print(jsonDict)
+
+
+removebook("1")
