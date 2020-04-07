@@ -1,0 +1,56 @@
+{
+  "1": {
+    "bookItems": 3,
+    "title": "De drie biggetjes",
+    "author": "Henk",
+    "genre": "Science-Fictions"
+  },
+  "2": {
+    "bookItems": 3,
+    "title": "Jonkel Papa",
+    "author": "JePadre",
+    "genre": "Literatuur"
+  },
+  "3": {
+    "bookItems": 3,
+    "title": "De drie en een half biggetjes",
+    "author": "Sir Henk",
+    "genre": "Science-Fictins"
+  },
+  "4": {
+    "bookItems": 3,
+    "title": "De drie en een half biggetjes",
+    "author": "Sir Henk",
+    "genre": "Science-Fictins"
+  },
+  "6": {
+    "bookItems": 4,
+    "title": "Apenkop",
+    "author": "Jackie Chan",
+    "genre": "Fictie"
+  },
+  "7": {
+    "bookItems": 5,
+    "title": "Barry Poter",
+    "author": "Henk van de henkie",
+    "genre": "Fictie"
+  },
+  "8": {
+    "bookItems": 5,
+    "title": "Barry Poter",
+    "author": "Henk van de henkie",
+    "genre": "Fictie"
+  },
+  "9": {
+    "bookItems": 5,
+    "title": "Barry Poter",
+    "author": "Henk van de henkie",
+    "genre": "Fictie"
+  },
+  "10": {
+    "bookItems": 5,
+    "title": "Barry Poter",
+    "author": "Henk van de henkie",
+    "genre": "Fictie"
+  }
+}

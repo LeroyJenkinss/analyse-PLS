@@ -20,6 +20,9 @@
 # Python heeft een paar goede tools hiervoor in de module JSON, zit waarschijnlijk ook een functie die json bestandjes gelijk inlaad. 
 # Not sure tho, mogen jullie zelf uitvogelen, ma dudes
 import json
+from shutil import copyfile
+import datetime as dt
+from pathlib import Path
 
 def readJson():
     with open('../Data/AllBooks.json', 'r') as bookJsonContent:
@@ -49,6 +52,16 @@ def addBookToJsonAndReturnId(bookToAdd):
         newDict2Json.write(json.dumps(oldJson, indent=2))
 
     return newId
+
+def createBackup():
+    backUpPath ='../Data/Backup/{}/AllBooks.json'.format(dt.date.today())
+    if not Path(backUpPath).exists():
+        Path(backUpPath).mkdir(parents=True, exist_ok=True)
+        copyfile('../Data/AllBooks.json', backUpPath)
+
+def recoverBackup(date):
+    backUpPath ='../Data/Backup/{}/AllBooks.json'.format(date)
+    copyfile(backUpPath, '../Data/AllBooks.json')
 
 def removebook(book_id):
 

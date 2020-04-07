@@ -1,6 +1,6 @@
 # Hier moet een frontend view komen van de catalog, deze moet alle informatie vanuit classes in halen
-
-from Repository import BooksRepository
+import os
+from Repository import BooksRepository, LoanedBooksRepository, SubscribersRepository
 from Objects.BookObject import Book
 
 class Catalog:
@@ -51,6 +51,29 @@ class Catalog:
         print(bookRowView[:-1])
         print("="*len(columnTitleFormatting))
 
-    def searchBook(self):
+    def SearchBook(self):
         searchTerm = input("Voer een zoekterm in (op id, auteur, titel of genre): ")
         Catalog.ViewCatalog(self, searchTerm)
+
+    def MakeBackup(self):
+        BooksRepository.createBackup()
+        LoanedBooksRepository.createBackup() 
+        SubscribersRepository.createBackup()
+
+    def RecoverBackup(self):
+        listOfDirectoryBackups = next(os.walk("Data/Backup"))[1]
+        dictOfDirectoryBackups = dict(enumerate(listOfDirectoryBackups, start=1))
+        for directory in dictOfDirectoryBackups:
+            print("{} : {}".format(directory, dictOfDirectoryBackups[directory]))
+        backupToRecoverIndex = int(input("Welk backup wil je herstellen? (geef nummer op van backup): ").strip())
+
+        if backupToRecoverIndex in dictOfDirectoryBackups:            
+            BooksRepository.recoverBackup(dictOfDirectoryBackups[backupToRecoverIndex])
+            LoanedBooksRepository.recoverBackup(dictOfDirectoryBackups[backupToRecoverIndex]) 
+            SubscribersRepository.recoverBackup(dictOfDirectoryBackups[backupToRecoverIndex])
+            print("Backup succesvol hersteld")
+        else:
+            print(backupToRecoverIndex)
+            print("Backup bestaat niet! Kies een andere index")
+
+Catalog().RecoverBackup()

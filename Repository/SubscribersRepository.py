@@ -2,6 +2,9 @@
 # Zie BooksRepository.py voor verdere toelichting
 
 import json
+from shutil import copyfile
+import datetime as dt
+from pathlib import Path
 
 def readJson():
     with open('../Data/AllSubscribers.json', 'r') as targetJsonSub:
@@ -32,3 +35,12 @@ def addSubscriber(subscriberToAdd):
     return newId
 
 
+def createBackup():
+    backUpPath ='../Data/Backup/{}/AllSubscribers.json'.format(dt.date.today())
+    if not Path(backUpPath).exists():
+        Path(backUpPath).mkdir(parents=True, exist_ok=True)
+        copyfile('../Data/AllSubscribers.json', backUpPath)
+
+def recoverBackup(date):
+    backUpPath ='../Data/Backup/{}/AllSubscribers.json'.format(date)
+    copyfile(backUpPath, '../Data/AllSubscribers.json')
