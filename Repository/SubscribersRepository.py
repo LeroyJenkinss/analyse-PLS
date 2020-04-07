@@ -21,8 +21,14 @@ def getNewHighestId():
     listAllIds = jsonAsDict.keys()
     return str(int(max(listAllIds)) + 1)
 
-def addSubsriber(name, address):
-    pass
-    # Voeg nieuwe subscriber toe door de hoogste id op te halen getNewHighestId()
-    # voeg toe aan json bestandje met naam en adress als parameter
+def addSubscriber(subscriberToAdd):
+    newId = getNewHighestId()
+    with open('../Data/AllSubscribers.json') as targetJson:
+        oldJson = json.load(targetJson)
+        oldJson[newId] = subscriberToAdd
+    with open('../Data/AllSubscribers.json', mode='w') as newDict2Json:
+        newDict2Json.write(json.dumps(oldJson, indent=2))
+
+    return newId
+
 
