@@ -63,6 +63,13 @@ def recoverBackup(date):
     backUpPath ='../Data/Backup/{}/AllBooks.json'.format(date)
     copyfile(backUpPath, '../Data/AllBooks.json')
 
+def removebook(book_id):
 
-def removeBookToJson(id):
-    # Tarik hier de remove book removen van json
+    jsonDict = readJson()
+    print( jsonDict)
+    print("hier komt 2")
+    del jsonDict[book_id]
+    print(jsonDict)
+
+
+removebook("1")
