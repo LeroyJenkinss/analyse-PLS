@@ -66,10 +66,8 @@ def recoverBackup(date):
 def removebook(book_id):
 
     jsonDict = readJson()
-    print( jsonDict)
-    print("hier komt 2")
     del jsonDict[book_id]
-    print(jsonDict)
+    with open('../Data/AllBooks.json', mode='w')as f:
+        f.write(json.dumps(jsonDict, indent=2))
 
 
-removebook("1")
