@@ -12,6 +12,9 @@ from Repository import BooksRepository
 class Book:
     def __init__(self, book_id):
         book = BooksRepository.getBook(book_id)        
+
+        if isinstance(book_id, str):
+            book_id = int(book_id)
         self.Id = book_id
         self.BookItems = book['bookItems']
         self.Title = book['title']
@@ -22,12 +25,8 @@ class Book:
     def AddBook(bookItems,  title, author, genre):
         bookToAdd = { "bookItems" : bookItems, "title" : title, "author" : author,"genre": genre }
         newBookId = BooksRepository.addBookToJsonAndReturnId(bookToAdd)     
-        print(newBookId)
 
         return Book(newBookId)
 
-    @staticmethod
-    def RemoveBook(book_id):
-        BooksRepository.removebook(book_id)
-        # Tarik:
-        # Hier nog wat code die naar een nieuwe methode in de bookrepository gaat wat het book op basis van de bookId verwijdert uit het Json bestandje. 
+    def RemoveBook(self):
+        BooksRepository.removebook(self.Id)

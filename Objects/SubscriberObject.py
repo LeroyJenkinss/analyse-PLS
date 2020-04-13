@@ -17,5 +17,5 @@ class Subscriber(Person):
     def AddSubscriber(name, address):
             subscriberToAdd = {"name": name, "address": address}
             newSubscriberId = SubscribersRepository.addSubscriber(subscriberToAdd)
-            print(newSubscriberId)
+            print("Given Id: " + newSubscriberId)
             return Subscriber(newSubscriberId)

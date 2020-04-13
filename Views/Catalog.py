@@ -1,18 +1,26 @@
-# Hier moet een frontend view komen van de catalog, deze moet alle informatie vanuit classes in halen
 import os
 from Repository import BooksRepository, LoanedBooksRepository, SubscribersRepository
 from Objects.BookObject import Book
+from Objects.LoanBooksObject import LoanedBook
 
 class Catalog:
     def __init__(self):
         self.AllBooksList = []
         allBooks = BooksRepository.readJson()
+        allLoanedBooks = LoanedBooksRepository.readJson()
         for singleBook in allBooks:
-            self.AllBooksList.append(Book(singleBook))
+            bookObject = Book(singleBook)
+            countLoanedBookOfBook = 0
+            for loanedBook in allLoanedBooks:
+                loanBookObject = LoanedBook(loanedBook) 
+                if loanBookObject.Id_book == bookObject.Id and loanBookObject.Returned == False:
+                    countLoanedBookOfBook += 1
+            if countLoanedBookOfBook !=  bookObject.BookItems:                   
+                self.AllBooksList.append(bookObject)
 
     def ViewCatalog(self, searchTerm = ""):
         if searchTerm != "":
-            AllBooksView = list(filter(lambda x: searchTerm in x.Id+x.Title+x.Author+x.Genre, self.AllBooksList))
+            AllBooksView = list(filter(lambda x: (searchTerm).lower() in (str(x.Id)+x.Title+x.Author+x.Genre).lower(), self.AllBooksList))
         else:            
             AllBooksView = self.AllBooksList
 
@@ -35,7 +43,7 @@ class Catalog:
                 
             whiteSpaceAfterTitle = (" " * (whiteSpaceToAddTitle-len(book.Title)))
             whiteSpaceAfterAuthor = (" " * (whiteSpaceToAddAuthor-len(book.Author)))
-            whiteSpaceAfterGenre = (" " * (whiteSpaceToAddAuthor-len(book.Genre)))
+            whiteSpaceAfterGenre = (" " * (whiteSpaceToAddGenre-len(book.Genre)))
 
             bookRowView += "|| {}{}|| {}{}|| {}{}|| {}{}||\n".format(book.Id, whiteSpaceAfterId, 
                                                                      book.Title, whiteSpaceAfterTitle, 
@@ -59,13 +67,14 @@ class Catalog:
         BooksRepository.createBackup()
         LoanedBooksRepository.createBackup() 
         SubscribersRepository.createBackup()
+        print("\nBackup gelukt")
 
     def RecoverBackup(self):
         listOfDirectoryBackups = next(os.walk("Data/Backup"))[1]
         dictOfDirectoryBackups = dict(enumerate(listOfDirectoryBackups, start=1))
         for directory in dictOfDirectoryBackups:
             print("{} : {}".format(directory, dictOfDirectoryBackups[directory]))
-        backupToRecoverIndex = int(input("Welk backup wil je herstellen? (geef nummer op van backup): ").strip())
+        backupToRecoverIndex = int(input("\nWelk backup wil je herstellen? (geef nummer op van backup): ").strip())
 
         if backupToRecoverIndex in dictOfDirectoryBackups:            
             BooksRepository.recoverBackup(dictOfDirectoryBackups[backupToRecoverIndex])
@@ -73,7 +82,9 @@ class Catalog:
             SubscribersRepository.recoverBackup(dictOfDirectoryBackups[backupToRecoverIndex])
             print("Backup succesvol hersteld")
         else:
-            print(backupToRecoverIndex)
             print("Backup bestaat niet! Kies een andere index")
 
-Catalog().RecoverBackup()
+    def AddBook(self, bookItems,  title, author, genre):
+        newBook = Book.AddBook(bookItems,  title, author, genre)
+        self.AllBooksList.append(newBook)
+        

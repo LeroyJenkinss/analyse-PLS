@@ -14,8 +14,8 @@ def readJson():
 
 def getNewHighestId():
     jsonAsDict = readJson()
-    listAllIds = jsonAsDict.keys()
-    return str(int(max(listAllIds)) + 1)
+    listAllIds = [int(id) for id in jsonAsDict.keys()]
+    return str(max(listAllIds) + 1)
 
 def addBookToJsonAndReturnId(loanedBookToAdd):    
     newId = getNewHighestId()
@@ -27,37 +27,31 @@ def addBookToJsonAndReturnId(loanedBookToAdd):
 
     return newId
 
-def getLoanedBookId(id):
+def getLoanedBook(id):
     jsonDict = readJson()
     if isinstance(id, int):
          id = str(id)
 
     return jsonDict[id]
 
-def returnBook(loanedBookToReturnId):
+def returnBook(loanedBookToReturnId, loanedBookToReturn):
     if isinstance(loanedBookToReturnId, int):
         loanedBookToReturnId = str(loanedBookToReturnId)
 
-    loanedItem = getLoanedBookId(loanedBookToReturnId)  
-    loanedItem["returned"] = True
-    loanedItem["dateReturned"] = str(dt.date.today())
     with open('Data/AllLoanedBooks.json') as targetJson:
         oldJson = json.load(targetJson)
         del oldJson[loanedBookToReturnId]
-        oldJson[loanedBookToReturnId] = loanedItem
+        oldJson[loanedBookToReturnId] = loanedBookToReturn
     with open('Data/AllLoanedBooks.json', mode='w') as newDict2Json:
         newDict2Json.write(json.dumps(oldJson, indent=2))
 
     return True
 
 def createBackup():
-    backUpPath = "Data/Backup/{}/AllLoanedBooks.json".format(dt.date.today())
-    if not Path(backUpPath).exists():
-        Path().mkdir(parents=True, exist_ok=True)
-        copyfile('Data/AllLoanedBooks.json', backUpPath)
+    backUpPath = "Data/Backup/{}".format(dt.date.today())
+    Path(backUpPath).mkdir(parents=True, exist_ok=True)
+    copyfile('Data/AllLoanedBooks.json', backUpPath + "/AllLoanedBooks.json")
 
 def recoverBackup(date):
     backUpPath ='Data/Backup/{}/AllLoanedBooks.json'.format(date)
     copyfile(backUpPath, 'Data/AllLoanedBooks.json')
-
-returnBook(3)

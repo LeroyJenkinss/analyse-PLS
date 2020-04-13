@@ -4,9 +4,12 @@ from Repository import LoanedBooksRepository
 import datetime as dt
 
 class LoanedBook:
-    def __init__(self, book_id):
-        book = LoanedBooksRepository.getLoanedBookId(book_id)        
-        self.Id = book_id
+    def __init__(self, loanedBook_id):
+        book = LoanedBooksRepository.getLoanedBook(loanedBook_id)
+        
+        if isinstance(loanedBook_id, str):
+            loanedBook_id = int(loanedBook_id)        
+        self.Id = loanedBook_id
         self.Id_book = book['id_book']
         self.Id_subscriber = book['id_subscriber']
         self.Returned = book['returned']
@@ -15,12 +18,15 @@ class LoanedBook:
 
     @staticmethod
     def AddLoanedBook(id_book,  id_subscriber):
-        loanedBookToAdd = { "id_book" : id_book, "id_subscriber" : id_subscriber, "returned" : False,"dateRented": str(dt.date.today()), "dateReturned": ""}
+        loanedBookToAdd = { "id_book" : id_book, "id_subscriber" : id_subscriber, "returned" : False, "dateRented": str(dt.datetime.now()), "dateReturned": ""}
         newLoanedBookId = LoanedBooksRepository.addBookToJsonAndReturnId(loanedBookToAdd)     
-        print(newLoanedBookId)
 
         return LoanedBook(newLoanedBookId)
 
     def ReturnLoanedBook(self):
-        succesIndicator = LoanedBooksRepository.returnBook(self.Id)
-        print(succesIndicator)
+        self.Returned = True
+        self.DateReturned = str(dt.datetime.now())
+        loanedBookToReturn = { "id_book" : self.Id_book, "id_subscriber" : self.Id_subscriber, "returned" : True, "dateRented": self.DateRented, "dateReturned": self.DateReturned}
+        LoanedBooksRepository.returnBook(self.Id, loanedBookToReturn)
+
+        return self

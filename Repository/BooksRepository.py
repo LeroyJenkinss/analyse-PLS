@@ -33,8 +33,8 @@ def readJson():
 
 def getNewHighestId():
     jsonAsDict = readJson()
-    listAllIds = jsonAsDict.keys()
-    return str(int(max(listAllIds)) + 1)
+    listAllIds = [int(id) for id in jsonAsDict.keys()]
+    return str(max(listAllIds) + 1)
 
 def getBook(id):
     jsonDict = readJson()
@@ -54,20 +54,19 @@ def addBookToJsonAndReturnId(bookToAdd):
     return newId
 
 def createBackup():
-    backUpPath ='Data/Backup/{}/AllBooks.json'.format(dt.date.today())
-    if not Path(backUpPath).exists():
-        Path(backUpPath).mkdir(parents=True, exist_ok=True)
-        copyfile('Data/AllBooks.json', backUpPath)
+    backUpPath ='Data/Backup/{}'.format(dt.date.today())
+    Path(backUpPath).mkdir(parents=True, exist_ok=True)
+    copyfile('Data/AllBooks.json', backUpPath + "/AllBooks.json")
 
 def recoverBackup(date):
     backUpPath ='Data/Backup/{}/AllBooks.json'.format(date)
     copyfile(backUpPath, 'Data/AllBooks.json')
 
 def removebook(book_id):
-
+    if isinstance(book_id, int):
+         book_id = str(book_id)
+         
     jsonDict = readJson()
     del jsonDict[book_id]
     with open('Data/AllBooks.json', mode='w')as f:
         f.write(json.dumps(jsonDict, indent=2))
-
-

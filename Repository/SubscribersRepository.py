@@ -21,8 +21,8 @@ def getPerson(id):
 
 def getNewHighestId():
     jsonAsDict = readJson()
-    listAllIds = jsonAsDict.keys()
-    return str(int(max(listAllIds)) + 1)
+    listAllIds = [int(id) for id in jsonAsDict.keys()]
+    return str(max(listAllIds) + 1)
 
 def addSubscriber(subscriberToAdd):
     newId = getNewHighestId()
@@ -36,10 +36,9 @@ def addSubscriber(subscriberToAdd):
 
 
 def createBackup():
-    backUpPath ='Data/Backup/{}/AllSubscribers.json'.format(dt.date.today())
-    if not Path(backUpPath).exists():
-        Path(backUpPath).mkdir(parents=True, exist_ok=True)
-        copyfile('Data/AllSubscribers.json', backUpPath)
+    backUpPath ='Data/Backup/{}'.format(dt.date.today())
+    Path(backUpPath).mkdir(parents=True, exist_ok=True)
+    copyfile('Data/AllSubscribers.json', backUpPath + "/AllSubscribers.json")
 
 def recoverBackup(date):
     backUpPath ='Data/Backup/{}/AllSubscribers.json'.format(date)
