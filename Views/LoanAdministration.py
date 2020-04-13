@@ -1,4 +1,3 @@
-# Hier moet een frontend view komen van de catalog, deze moet alle informatie vanuit classes in halen
 import os
 from Repository import BooksRepository, LoanedBooksRepository, SubscribersRepository
 from Objects.BookObject import Book
