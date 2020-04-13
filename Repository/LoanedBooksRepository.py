@@ -6,7 +6,7 @@ import datetime as dt
 from pathlib import Path
 
 def readJson():
-    with open('../Data/AllLoanedBooks.json', 'r') as bookJsonContent:
+    with open('Data/AllLoanedBooks.json', 'r') as bookJsonContent:
         allbooks = bookJsonContent.read()
         dict_books = json.loads(allbooks)
     
@@ -19,10 +19,10 @@ def getNewHighestId():
 
 def addBookToJsonAndReturnId(loanedBookToAdd):    
     newId = getNewHighestId()
-    with open('../Data/AllLoanedBooks.json') as targetJson:
+    with open('Data/AllLoanedBooks.json') as targetJson:
         oldJson = json.load(targetJson)
         oldJson[newId] = loanedBookToAdd
-    with open('../Data/AllLoanedBooks.json', mode='w') as newDict2Json:
+    with open('Data/AllLoanedBooks.json', mode='w') as newDict2Json:
         newDict2Json.write(json.dumps(oldJson, indent=2))
 
     return newId
@@ -34,22 +34,30 @@ def getLoanedBookId(id):
 
     return jsonDict[id]
 
-def returnBook(loanedBookToReturn):
-    loanId = getLoanedBookId(loanedBookToReturn.id_book)  
-    with open('../Data/AllLoanedBooks.json') as targetJson:
+def returnBook(loanedBookToReturnId):
+    if isinstance(loanedBookToReturnId, int):
+        loanedBookToReturnId = str(loanedBookToReturnId)
+
+    loanedItem = getLoanedBookId(loanedBookToReturnId)  
+    loanedItem["returned"] = True
+    loanedItem["dateReturned"] = str(dt.date.today())
+    with open('Data/AllLoanedBooks.json') as targetJson:
         oldJson = json.load(targetJson)
-        oldJson[loanId] = loanedBookToReturn
-    with open('../Data/AllLoanedBooks.json', mode='w') as newDict2Json:
+        del oldJson[loanedBookToReturnId]
+        oldJson[loanedBookToReturnId] = loanedItem
+    with open('Data/AllLoanedBooks.json', mode='w') as newDict2Json:
         newDict2Json.write(json.dumps(oldJson, indent=2))
 
-    return loanId
+    return True
 
 def createBackup():
-    backUpPath = "../Data/Backup/{}/AllLoanedBooks.json".format(dt.date.today())
+    backUpPath = "Data/Backup/{}/AllLoanedBooks.json".format(dt.date.today())
     if not Path(backUpPath).exists():
         Path().mkdir(parents=True, exist_ok=True)
-        copyfile('../Data/AllLoanedBooks.json', backUpPath)
+        copyfile('Data/AllLoanedBooks.json', backUpPath)
 
 def recoverBackup(date):
-    backUpPath ='../Data/Backup/{}/AllLoanedBooks.json'.format(date)
-    copyfile(backUpPath, '../Data/AllLoanedBooks.json')
+    backUpPath ='Data/Backup/{}/AllLoanedBooks.json'.format(date)
+    copyfile(backUpPath, 'Data/AllLoanedBooks.json')
+
+returnBook(3)

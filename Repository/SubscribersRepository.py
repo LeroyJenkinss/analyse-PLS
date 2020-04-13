@@ -7,7 +7,7 @@ import datetime as dt
 from pathlib import Path
 
 def readJson():
-    with open('../Data/AllSubscribers.json', 'r') as targetJsonSub:
+    with open('Data/AllSubscribers.json', 'r') as targetJsonSub:
         allSubscribers = targetJsonSub.read()
         dict_allsub = json.loads(allSubscribers)
 
@@ -26,21 +26,21 @@ def getNewHighestId():
 
 def addSubscriber(subscriberToAdd):
     newId = getNewHighestId()
-    with open('../Data/AllSubscribers.json') as targetJson:
+    with open('Data/AllSubscribers.json') as targetJson:
         oldJson = json.load(targetJson)
         oldJson[newId] = subscriberToAdd
-    with open('../Data/AllSubscribers.json', mode='w') as newDict2Json:
+    with open('Data/AllSubscribers.json', mode='w') as newDict2Json:
         newDict2Json.write(json.dumps(oldJson, indent=2))
 
     return newId
 
 
 def createBackup():
-    backUpPath ='../Data/Backup/{}/AllSubscribers.json'.format(dt.date.today())
+    backUpPath ='Data/Backup/{}/AllSubscribers.json'.format(dt.date.today())
     if not Path(backUpPath).exists():
         Path(backUpPath).mkdir(parents=True, exist_ok=True)
-        copyfile('../Data/AllSubscribers.json', backUpPath)
+        copyfile('Data/AllSubscribers.json', backUpPath)
 
 def recoverBackup(date):
-    backUpPath ='../Data/Backup/{}/AllSubscribers.json'.format(date)
-    copyfile(backUpPath, '../Data/AllSubscribers.json')
+    backUpPath ='Data/Backup/{}/AllSubscribers.json'.format(date)
+    copyfile(backUpPath, 'Data/AllSubscribers.json')

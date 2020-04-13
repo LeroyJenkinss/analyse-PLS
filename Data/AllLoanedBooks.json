@@ -1,9 +1,23 @@
 {
-    "1" : {
-    "id_book" : 1,
+  "4": {
+    "id_book": 4,
+    "id_subscriber": 4,
+    "returned": true,
+    "dateRented": "2020-04-13",
+    "dateReturned": "2020-04-13"
+  },
+  "3": {
+    "id_book": 3,
+    "id_subscriber": 3,
+    "returned": true,
+    "dateRented": "2020-04-13",
+    "dateReturned": "2020-04-13"
+  },
+  "1": {
+    "id_book": 1,
     "id_subscriber": 1,
-    "returned" : false,
-    "dateRented" : "2020-03-19 13:09:34.467",
-    "dateReturned" : ""
-    }
+    "returned": true,
+    "dateRented": "2020-03-19 13:09:34.467",
+    "dateReturned": "2020-04-13"
+  }
 }

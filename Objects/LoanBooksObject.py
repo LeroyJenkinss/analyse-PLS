@@ -1,6 +1,7 @@
 
 
 from Repository import LoanedBooksRepository
+import datetime as dt
 
 class LoanedBook:
     def __init__(self, book_id):
@@ -14,18 +15,12 @@ class LoanedBook:
 
     @staticmethod
     def AddLoanedBook(id_book,  id_subscriber):
-        loanedBookToAdd = { "id_book" : id_book, "id_subscriber" : id_subscriber, "returned" : False,"dateRented": dt.date.today() }
+        loanedBookToAdd = { "id_book" : id_book, "id_subscriber" : id_subscriber, "returned" : False,"dateRented": str(dt.date.today()), "dateReturned": ""}
         newLoanedBookId = LoanedBooksRepository.addBookToJsonAndReturnId(loanedBookToAdd)     
         print(newLoanedBookId)
 
         return LoanedBook(newLoanedBookId)
 
-    @staticmethod
-    def ReturnLoanedBook(id_book,id_subscriber):
-        loanedBookToReturn = { "id_book" : id_book, "id_subscriber" : id_subscriber, "returned" : True,"dateReturned": dt.date.today() }
-        succesIndicator = LoanedBooksRepository.returnBook(loanedBookToReturn)
+    def ReturnLoanedBook(self):
+        succesIndicator = LoanedBooksRepository.returnBook(self.Id)
         print(succesIndicator)
-        return LoanedBook(succesIndicator)
-
-
-        
