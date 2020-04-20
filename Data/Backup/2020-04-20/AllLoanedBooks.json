@@ -1,0 +1,58 @@
+{
+  "1": {
+    "id_book": 1,
+    "id_subscriber": 1,
+    "returned": true,
+    "dateRented": "2020-03-19 13:09:34.467",
+    "dateReturned": "2020-04-13 15:53:54.751649"
+  },
+  "4": {
+    "id_book": 4,
+    "id_subscriber": 4,
+    "returned": true,
+    "dateRented": "2020-04-13",
+    "dateReturned": "2020-04-13 17:39:30.406787"
+  },
+  "3": {
+    "id_book": 3,
+    "id_subscriber": 3,
+    "returned": true,
+    "dateRented": "2020-04-13",
+    "dateReturned": "2020-04-13 17:53:30.347304"
+  },
+  "6": {
+    "id_book": 3,
+    "id_subscriber": 2,
+    "returned": true,
+    "dateRented": "2020-04-13 16:46:26.472929",
+    "dateReturned": "2020-04-13 17:56:41.009978"
+  },
+  "5": {
+    "id_book": 1,
+    "id_subscriber": 1,
+    "returned": true,
+    "dateRented": "2020-04-13 16:13:53.192918",
+    "dateReturned": "2020-04-13 17:57:18.772026"
+  },
+  "7": {
+    "id_book": 1,
+    "id_subscriber": 3,
+    "returned": true,
+    "dateRented": "2020-04-13 16:54:08.500529",
+    "dateReturned": "2020-04-13 17:58:16.985787"
+  },
+  "8": {
+    "id_book": 1,
+    "id_subscriber": 5,
+    "returned": true,
+    "dateRented": "2020-04-13 17:02:36.726225",
+    "dateReturned": "2020-04-13 18:02:00.448646"
+  },
+  "9": {
+    "id_book": 2,
+    "id_subscriber": 4,
+    "returned": false,
+    "dateRented": "2020-04-20 15:05:01.175788",
+    "dateReturned": ""
+  }
+}

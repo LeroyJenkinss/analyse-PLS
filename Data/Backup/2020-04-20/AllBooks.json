@@ -1,6 +1,6 @@
 {
   "1": {
-    "bookItems": 3,
+    "bookItems": 1,
     "title": "De drie biggetjes",
     "author": "Henk",
     "genre": "Science-Fictions"
@@ -42,15 +42,27 @@
     "genre": "Fictie"
   },
   "9": {
-    "bookItems": 5,
-    "title": "Barry Poter",
-    "author": "Henk van de henkie",
-    "genre": "Fictie"
+    "bookItems": 1,
+    "title": "nn",
+    "author": ",,",
+    "genre": "sad"
   },
   "10": {
-    "bookItems": 5,
-    "title": "Barry Poter",
-    "author": "Henk van de henkie",
-    "genre": "Fictie"
+    "bookItems": 1,
+    "title": "aa",
+    "author": "aa",
+    "genre": "cc"
+  },
+  "11": {
+    "bookItems": 1,
+    "title": "sdasd",
+    "author": "asdasdasdas",
+    "genre": "asdasdasd"
+  },
+  "12": {
+    "bookItems": 1,
+    "title": "uu",
+    "author": "uu",
+    "genre": "uu"
   }
 }

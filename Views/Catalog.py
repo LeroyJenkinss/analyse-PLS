@@ -1,4 +1,5 @@
 import os
+import sys
 from Repository import BooksRepository, LoanedBooksRepository, SubscribersRepository
 from Objects.BookObject import Book
 from Objects.LoanBooksObject import LoanedBook
@@ -81,6 +82,8 @@ class Catalog:
             LoanedBooksRepository.recoverBackup(dictOfDirectoryBackups[backupToRecoverIndex]) 
             SubscribersRepository.recoverBackup(dictOfDirectoryBackups[backupToRecoverIndex])
             print("Backup succesvol hersteld")
+            os.startfile(sys.argv[0])
+            sys.exit()
         else:
             print("Backup bestaat niet! Kies een andere index")
 

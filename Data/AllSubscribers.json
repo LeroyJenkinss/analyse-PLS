@@ -1,46 +1,11 @@
 {
-  "1": {
-    "name": "Gino pietermai",
-    "address": "Coronaweg 24"
-  },
-  "2": {
-    "name": "Henkie",
-    "address": "Ebolaweg 24"
-  },
-  "3": {
-    "name": "Davinci",
-    "address": "Alexandriestraat"
-  },
-  "4": {
-    "name": "Kay",
-    "address": "Niemandslaan"
-  },
-  "5": {
-    "name": "name",
-    "address": "address"
-  },
-  "6": {
-    "name": "name",
-    "address": "address"
-  },
-  "7": {
-    "name": "name",
-    "address": "address"
-  },
-  "8": {
-    "name": "name",
-    "address": "address"
-  },
-  "9": {
-    "name": "superhenk",
-    "address": "alphahenk"
-  },
-  "10": {
-    "name": "Man man man",
-    "address": "adreslaan 1"
-  },
-  "11": {
-    "name": "drol",
-    "address": "drollaan"
-  }
+    "1" : {
+        "name": "Gino pietermai",
+        "address": "Coronaweg 24"
+        },
+    "2" : {
+        "name": "Henkie",
+        "address": "Ebolaweg 24"
+    }
 }
+
