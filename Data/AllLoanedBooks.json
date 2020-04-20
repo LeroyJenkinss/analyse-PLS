@@ -1,9 +1,9 @@
 {
-    "1" : {
-    "id_book" : 1,
+  "1": {
+    "id_book": 1,
     "id_subscriber": 1,
-    "returned" : false,
-    "dateRented" : "2020-03-19 13:09:34.467",
-    "dateReturned" : ""
-    }
+    "returned": false,
+    "dateRented": "2020-03-19 13:09:34.467",
+    "dateReturned": ""
+  }
 }

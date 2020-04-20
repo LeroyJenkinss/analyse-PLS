@@ -9,9 +9,6 @@ from Repository import SubscribersRepository
 print("Welkom bij deze super coole Public Library System" )
 print("Aan de hand van de cijfers kan je navigeren, door de cijfer in te tikken en op enter te drukken" )
 
-catalogView = Catalog()
-loanAdministrationView = LoanAdministration()
-
 def inputOnInteger(textToDisplay):
      userInput = input(textToDisplay)
      try:
@@ -22,6 +19,9 @@ def inputOnInteger(textToDisplay):
           inputOnInteger(textToDisplay)
 
 def startApplication(stopApplication = False, loggedInAsLibrarian = False):
+     catalogView = Catalog()
+     loanAdministrationView = LoanAdministration()
+
      while stopApplication == False:
           print("\n1.  Laat Catalogus zien (Niet uitgeleende boeken) 2.  Zoek in Catalogus" )
           print("3.  Laat LoanAdministration zien                  4.  Zoek in LoanAdministration" )
@@ -63,6 +63,7 @@ def startApplication(stopApplication = False, loggedInAsLibrarian = False):
                     if bookNotAvailable != True:
                          loanAdministrationView.LoanBook(id_book, id_subscriber)
                          print("\nBoek is bij deze uitgeleend\n")
+                         catalogView.__init__()
                     else:
                          print("Geen beschikbare exemplaren")
                except:
